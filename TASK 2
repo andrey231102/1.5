@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+namespace дз
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Queue <int> customers = new Queue<int>();
+            customers.Enqueue(10000);
+            customers.Enqueue(20000);
+            customers.Enqueue(500);
+            customers.Enqueue(1500);
+
+            ServeTheCustomer(customers);
+        }
+        
+        static void ServeTheCustomer(Queue<int> customers)
+        {
+            int income = 0;
+            bool isWorking = true;
+
+            while (isWorking == true)
+            {
+                if (customers.Count != 0)
+                {
+                    foreach (var item in customers)
+                    {
+                        Console.WriteLine($"Этот покупатель хочет принести в вашу копилку {item} валюты");
+                    }
+                    Console.WriteLine($"В вашей кассе {income} денег. Нажмите любую кнопку чтобы перейти к следующему покупателю");
+                    income += customers.Peek();
+                    customers.Dequeue();
+                    Console.ReadLine();
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.WriteLine($"Рабочий день окончен, всего вы заработали {income} денег");
+                    isWorking = false;
+                }
+            }
+        }
+    }
+}
