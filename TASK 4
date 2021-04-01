@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+namespace дз
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string command = "";
+            Dictionary<string, string> profiles = new Dictionary<string, string>();
+            Console.WriteLine("1 - добавить досье \n2 - вывести все досье \n3 - удалить досье \n4 - поиск по фамилии");
+
+            do
+            {
+                sendMessage();
+                command = Console.ReadLine();
+                switch (command)
+                {
+                    case "1":
+                        AddProfile(profiles);
+                        break;
+                    case "2":
+                        DisplayAllProfiles(profiles);
+                        break;
+                    case "3":
+                        RemoveUser(profiles);
+                        break;
+                    case "4":
+                        Console.WriteLine("Вы покинули программу");
+                        break;
+                    default:
+                        Console.WriteLine("Такой команды не существует");
+                        break;
+                }
+            }
+            while (command != "4");
+        }
+
+        static void sendMessage()
+        {
+            Console.WriteLine("введите номер команды");
+        }
+
+        static void AddProfile(Dictionary<string, string> profiles)
+        {
+            Console.WriteLine("Введите фамилию нового пользователя");
+            string user = Console.ReadLine();
+            Console.WriteLine("Введите кто он по профессии");
+            string job = Console.ReadLine();
+            Console.WriteLine("пользователь добавлен");
+            profiles.Add(user, job);
+        }
+
+        static void DisplayAllProfiles(Dictionary<string,string> profiles)
+        {
+            foreach (var item in profiles)
+            {
+                Console.WriteLine($"{item.Key} - {item.Value}");
+            }
+        }
+
+        static void RemoveUser(Dictionary<string, string> profiles)
+        {
+            Console.WriteLine("Введите фамилию пользователя чтобы его удалить");
+            string user = Console.ReadLine();
+            if (profiles.ContainsKey(user) == false)
+            {
+                Console.WriteLine("Такого пользователя нету");
+            }
+            else
+            {
+                profiles.Remove(user);
+                Console.WriteLine("Пользователь удален");
+            }
+        }
+    }
+}
