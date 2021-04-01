@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+namespace дз
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Столицу какой страны вы хотите узнать: Россия, Китай, Украина, Англия, Франция. Введите:выйти и вы покинете программу");
+            Dictionary <string, string> countries = new Dictionary<string, string>()
+            {
+                {"Россия", "Москва"},
+                {"Китай", "Пекин"},
+                {"Украина", "Киев"},
+                {"Великобритания", "Лондон"},
+                {"Франция", "Париж"}
+            };
+
+            SearchTheCapital(countries);
+        }
+
+        static void SearchTheCapital(Dictionary <string, string> countries)
+        {
+            bool isWorking = true;
+
+            while (isWorking == true)
+            {
+                string userInput = Console.ReadLine();
+
+                if (countries.ContainsKey(userInput))
+                {
+                    Console.WriteLine($"Страна {userInput}, а столица " + countries[userInput]);
+                }
+                else if (userInput == "выйти")
+                {
+                    isWorking = false;
+                }
+                else
+                {
+                    Console.WriteLine("Такую страну наша программа еще не знает ");
+                }
+            }
+        }
+    }
+}
