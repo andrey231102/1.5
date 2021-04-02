@@ -5,50 +5,48 @@ using System.Threading.Tasks;
 namespace дз
 {
     class Program
-    {
+    { 
         static void Main(string[] args)
         {
             bool isWorking = true;
             List<int> numbers = new List<int>();
-
+    
             Console.WriteLine("Вводите числа в массив. Наберите sum чтобы узнать их сумму или exit чтобы выйти из программы");
             while (isWorking)
             {
                 string userInput = Console.ReadLine();
-                try
+            
+                if (userInput == "exit")
                 {
-                    if (userInput == "exit")
-                    {
-                        isWorking = false;
-                        break;
-                    }
-                    else if (userInput == "sum")
-                    {
-                        SumAllElements(numbers);
-                    }
-                    else
-                    {
-                        AddElementToList(userInput, numbers);
-                    }
+                   isWorking = false;
                 }
-                catch (Exception)
+                else if (userInput == "sum")
                 {
-                    Console.WriteLine("Ошибка ввода");
-                    continue;
+                   SumAllElements(numbers);
+                }
+                else if (int.TryParse(userInput, out int number) == false)
+                {
+                   Console.WriteLine("Ошибка ввода");
+                }
+                else
+                {
+                   AddElementToList(userInput, numbers);
                 }
             }
         }
-        static void AddElementToList(string userInput, List<int>numbers)
+            
+        static void AddElementToList(string userInput, List<int> numbers)
         {
             int number = Convert.ToInt32(userInput);
             numbers.Add(number);
         }
-        static void SumAllElements(List <int> numbers)
+
+        static void SumAllElements(List<int> numbers)
         {
             int sum = 0;
-            foreach (var item in numbers)
+            foreach (var number in numbers)
             {
-                sum += item;
+                sum += number;
             }
             Console.WriteLine("Сумма элементов равна: " + sum);
         }
