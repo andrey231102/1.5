@@ -8,16 +8,16 @@ namespace дз
     {
         static void Main(string[] args)
         {
-            Queue <int> customers = new Queue<int>();
+            Queue<int> customers = new Queue<int>();
             customers.Enqueue(10000);
             customers.Enqueue(20000);
             customers.Enqueue(500);
             customers.Enqueue(1500);
 
-            ServeTheCustomer(customers);
+            ServeCustomers(customers);
         }
-        
-        static void ServeTheCustomer(Queue<int> customers)
+
+        static void ServeCustomers(Queue<int> customers)
         {
             int income = 0;
             bool isWorking = true;
@@ -26,13 +26,12 @@ namespace дз
             {
                 if (customers.Count != 0)
                 {
-                    foreach (var item in customers)
+                    foreach (var customer in customers)
                     {
-                        Console.WriteLine($"Этот покупатель хочет принести в вашу копилку {item} валюты");
+                        Console.WriteLine($"Этот покупатель хочет принести в вашу копилку {customer} валюты");
                     }
                     Console.WriteLine($"В вашей кассе {income} денег. Нажмите любую кнопку чтобы перейти к следующему покупателю");
-                    income += customers.Peek();
-                    customers.Dequeue();
+                    income += customers.Dequeue();
                     Console.ReadLine();
                     Console.Clear();
                 }
