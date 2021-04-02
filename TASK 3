@@ -34,9 +34,8 @@ namespace дз
                 {
                    Console.WriteLine("Ошибка ввода");
                 }
-                else
+                else if(isNumber)
                 {
-                    number = Convert.ToInt32(userInput);
                     numbers.Add(number);
                 }
             }
