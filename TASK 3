@@ -34,7 +34,7 @@ namespace дз
                 {
                     numbers.Add(number);
                 }
-                else if (isNumber == false)
+                else
                 {
                    Console.WriteLine("Ошибка ввода");
                 }
