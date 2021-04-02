@@ -15,40 +15,31 @@ namespace дз
             while (isWorking)
             {
                 string userInput = Console.ReadLine();
-            
+                bool isNumber = int.TryParse(userInput, out int number);
+
                 if (userInput == "exit")
                 {
                    isWorking = false;
                 }
                 else if (userInput == "sum")
                 {
-                   SumAllElements(numbers);
+                    int sum = 0;
+                    foreach (var value in numbers)
+                    {
+                        sum += value;
+                    }
+                    Console.WriteLine("Сумма элементов равна: " + sum);
                 }
-                else if (int.TryParse(userInput, out int number) == false)
+                else if (isNumber == false)
                 {
                    Console.WriteLine("Ошибка ввода");
                 }
                 else
                 {
-                   AddElementToList(userInput, numbers);
+                    number = Convert.ToInt32(userInput);
+                    numbers.Add(number);
                 }
             }
-        }
-            
-        static void AddElementToList(string userInput, List<int> numbers)
-        {
-            int number = Convert.ToInt32(userInput);
-            numbers.Add(number);
-        }
-
-        static void SumAllElements(List<int> numbers)
-        {
-            int sum = 0;
-            foreach (var number in numbers)
-            {
-                sum += number;
-            }
-            Console.WriteLine("Сумма элементов равна: " + sum);
         }
     }
 }
