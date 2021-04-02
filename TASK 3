@@ -30,13 +30,13 @@ namespace дз
                     }
                     Console.WriteLine("Сумма элементов равна: " + sum);
                 }
+                 else if(isNumber)
+                {
+                    numbers.Add(number);
+                }
                 else if (isNumber == false)
                 {
                    Console.WriteLine("Ошибка ввода");
-                }
-                else if(isNumber)
-                {
-                    numbers.Add(number);
                 }
             }
         }
