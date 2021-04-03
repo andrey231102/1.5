@@ -8,14 +8,14 @@ namespace дз
     {
         static void Main(string[] args)
         {
-            bool IsWorking = true;
+            bool isWorking = true;
             string command = "";
             Dictionary<string, string> profiles = new Dictionary<string, string>();
             Console.WriteLine("1 - добавить досье \n2 - вывести все досье \n3 - удалить досье \n4 - поиск по фамилии");
 
             do
             {
-                sendMessage();
+                SendMessage();
                 command = Console.ReadLine();
                 switch (command)
                 {
@@ -30,17 +30,17 @@ namespace дз
                         break;
                     case "4":
                         Console.WriteLine("Вы покинули программу");
-                        IsWorking = false;
+                        isWorking = false;
                         break;
                     default:
                         Console.WriteLine("Такой команды не существует");
                         break;
                 }
             }
-            while (IsWorking);
+            while (isWorking);
         }
 
-        static void sendMessage()
+        static void SendMessage()
         {
             Console.WriteLine("введите номер команды");
         }
@@ -48,11 +48,18 @@ namespace дз
         static void AddProfile(Dictionary<string, string> profiles)
         { 
             Console.WriteLine("Введите фамилию нового пользователя");
-            string user = CheckUser(profiles);
-            Console.WriteLine("Введите кто он по профессии");
-            string job = Console.ReadLine();
-            Console.WriteLine("пользователь добавлен");
-            profiles.Add(user, job);
+            string user = Console.ReadLine();            
+            if (profiles.ContainsKey(user))
+            {
+                Console.WriteLine("Такой польлователь уже есть, укажите дополнительные данные чтобы программа его видела");
+            }
+            else
+            {
+                Console.WriteLine("Введите кто он по профессии");
+                string job = Console.ReadLine();
+                profiles.Add(user, job);
+                Console.WriteLine("пользователь добавлен");
+            }
         }
 
         static void DisplayAllProfiles(Dictionary<string, string> profiles)
@@ -75,25 +82,6 @@ namespace дз
             {
                 Console.WriteLine("Такого пользователя нету");
             }
-        }
-
-        static string CheckUser(Dictionary<string, string> profiles)
-        {
-            bool isUniqueProfile = false;
-            string user = "";
-            while (isUniqueProfile == false)
-            {
-                user = Console.ReadLine();
-                if (profiles.ContainsKey(user))
-                {
-                    Console.WriteLine("Такой польлователь уже есть, укажите дополнительные данные чтобы программа его видела");
-                }
-                else
-                {
-                    isUniqueProfile = true;
-                }
-            }
-            return user;
         }
     }
 }
